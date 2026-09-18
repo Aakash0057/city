@@ -13,7 +13,9 @@ from app.routers import (
     contact,
     emergency,
     laboratory,
-    pharmacy
+    pharmacy,
+    reporting,
+    doctor_dashboard
 )
 from seed import seed_database
 
@@ -65,6 +67,8 @@ app.include_router(contact.router, prefix=settings.API_V1_STR)
 app.include_router(emergency.router, prefix=settings.API_V1_STR)
 app.include_router(laboratory.router, prefix=settings.API_V1_STR)
 app.include_router(pharmacy.router, prefix=settings.API_V1_STR)
+app.include_router(reporting.router, prefix=settings.API_V1_STR)
+app.include_router(doctor_dashboard.router, prefix=settings.API_V1_STR)
 
 
 @app.get("/")
