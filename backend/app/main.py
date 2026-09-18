@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import SessionLocal, engine, Base
-from app.routers import auth, activity
+from app.routers import auth, activity, doctors, services, appointments, contact
 from seed import seed_database
 
 logging.basicConfig(level=logging.INFO)
@@ -48,6 +48,10 @@ app.add_middleware(
 # Mount core routers
 app.include_router(auth.router, prefix=settings.API_V1_STR)
 app.include_router(activity.router, prefix=settings.API_V1_STR)
+app.include_router(doctors.router, prefix=settings.API_V1_STR)
+app.include_router(services.router, prefix=settings.API_V1_STR)
+app.include_router(appointments.router, prefix=settings.API_V1_STR)
+app.include_router(contact.router, prefix=settings.API_V1_STR)
 
 
 @app.get("/")
