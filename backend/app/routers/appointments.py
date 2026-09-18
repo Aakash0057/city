@@ -26,8 +26,9 @@ router = APIRouter(prefix="/appointments", tags=["Appointments"])
 
 
 @router.get("/available-slots", response_model=DoctorSlotsResponse)
+@router.get("/slots/{doctor_id}", response_model=DoctorSlotsResponse)
 def get_available_slots(
-    doctor_id: int = Query(..., description="Target doctor ID"),
+    doctor_id: Optional[int] = None,
     date: str = Query(..., description="Target date in YYYY-MM-DD format"),
     db: Session = Depends(get_db)
 ):

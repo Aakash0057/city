@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, computed_field
 from app.schemas.user import UserResponse
 
 
@@ -33,5 +33,15 @@ class DoctorResponse(DoctorBase):
     user_id: int
     created_at: datetime
     user: UserResponse
+
+    @computed_field
+    @property
+    def full_name(self) -> str:
+        return self.user.full_name if self.user else ""
+
+    @computed_field
+    @property
+    def email(self) -> str:
+        return self.user.email if self.user else ""
 
     model_config = ConfigDict(from_attributes=True)
