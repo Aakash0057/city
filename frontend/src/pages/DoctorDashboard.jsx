@@ -72,12 +72,19 @@ export default function DoctorDashboard() {
             <Stethoscope className="w-8 h-8" />
           </div>
           <div>
-            <span className="badge-blue bg-teal-400/20 text-teal-200 border-0 text-xs">
-              Attending Physician Workspace
-            </span>
-            <h1 className="text-2xl font-bold mt-1">{user?.full_name || 'Dr. Physician'}</h1>
-            <p className="text-xs text-primary-200">
-              Department of Specialty Medicine • CityCare Hospital
+            <div className="flex items-center gap-2 mb-1">
+              <span className="badge-blue bg-teal-400/20 text-teal-200 border-0 text-xs font-semibold">
+                {data?.doctor_profile?.specialty || 'Specialist'} Physician
+              </span>
+              {data?.doctor_profile?.room_number && (
+                <span className="text-[11px] bg-white/10 px-2 py-0.5 rounded text-teal-100 font-mono">
+                  {data.doctor_profile.room_number}
+                </span>
+              )}
+            </div>
+            <h1 className="text-2xl font-bold">{data?.doctor_profile?.name || user?.full_name || 'Dr. Physician'}</h1>
+            <p className="text-xs text-primary-200 mt-0.5">
+              Department of {data?.doctor_profile?.specialty || 'Specialty Medicine'} • CityCare Hospital • Fee: ${data?.doctor_profile?.consultation_fee ?? 100}
             </p>
           </div>
         </div>
