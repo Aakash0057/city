@@ -4,7 +4,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import SessionLocal, engine, Base
-from app.routers import auth, activity, doctors, services, appointments, contact
+from app.routers import (
+    auth,
+    activity,
+    doctors,
+    services,
+    appointments,
+    contact,
+    emergency,
+    laboratory,
+    pharmacy
+)
 from seed import seed_database
 
 logging.basicConfig(level=logging.INFO)
@@ -52,6 +62,9 @@ app.include_router(doctors.router, prefix=settings.API_V1_STR)
 app.include_router(services.router, prefix=settings.API_V1_STR)
 app.include_router(appointments.router, prefix=settings.API_V1_STR)
 app.include_router(contact.router, prefix=settings.API_V1_STR)
+app.include_router(emergency.router, prefix=settings.API_V1_STR)
+app.include_router(laboratory.router, prefix=settings.API_V1_STR)
+app.include_router(pharmacy.router, prefix=settings.API_V1_STR)
 
 
 @app.get("/")
