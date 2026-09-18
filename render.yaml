@@ -2,7 +2,7 @@ services:
   # Backend API Web Service
   - type: web
     name: citycare-backend
-    env: python
+    runtime: python
     region: oregon
     plan: free
     rootDir: backend
@@ -24,11 +24,9 @@ services:
         value: '["https://citycare-frontend.onrender.com","http://localhost:5173"]'
 
   # Frontend Static Site
-  - type: static
+  - type: web
+    runtime: static
     name: citycare-frontend
-    env: static
-    region: oregon
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
