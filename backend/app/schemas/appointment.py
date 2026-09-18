@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, computed_field
 from app.models.enums import AppointmentStatus
 from app.schemas.doctor import DoctorResponse
 from app.schemas.user import UserResponse
@@ -15,6 +15,11 @@ class DoctorSlotsResponse(BaseModel):
     doctor_id: int
     date: str
     available_slots: List[TimeSlotAvailability]
+
+    @computed_field
+    @property
+    def slots(self) -> List[TimeSlotAvailability]:
+        return self.available_slots
 
 
 class AppointmentCreate(BaseModel):

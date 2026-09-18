@@ -87,7 +87,7 @@ export default function PatientPortal() {
     setLoadingSlots(true)
     try {
       const res = await api.appointments.slots(doctorId, date)
-      setAvailableSlots(res.slots || [])
+      setAvailableSlots(res.available_slots || res.slots || [])
     } catch {
       setAvailableSlots([])
     } finally {

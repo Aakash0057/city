@@ -50,7 +50,8 @@ export default function BookAppointment() {
     setSelectedSlot('')
     api.appointments.slots(selectedDoctorId, selectedDate)
       .then((res) => {
-        setSlots(res.slots || [])
+        const slotList = res.available_slots || res.slots || []
+        setSlots(slotList)
       })
       .catch((err) => {
         toast.error(err.message || 'Failed to fetch slots')
