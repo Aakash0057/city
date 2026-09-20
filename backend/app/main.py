@@ -85,3 +85,7 @@ def root():
 @app.get("/api/health")
 def health():
     return {"status": "healthy", "service": "CityCare Backend API"}
+
+@app.get("/debug-routes")
+def debug_routes():
+    return {"routes": [route.path for route in app.routes]}
