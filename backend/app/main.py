@@ -86,6 +86,11 @@ def root():
 def health():
     return {"status": "healthy", "service": "CityCare Backend API"}
 
+print("===== CITYCARE MAIN.PY LOADED =====")
+print("MAIN FILE:", __file__)
+print("REGISTERED ROUTES:", [route.path for route in app.routes])
+print("===================================")
+
 @app.get("/debug-routes")
 def debug_routes():
     return {"routes": [route.path for route in app.routes]}
